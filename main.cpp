@@ -5,8 +5,8 @@
 //
 int game() {
 	int choice;
-	serpens snake;
-	snake.playgame();
+	Serpens Snake;
+	Snake.playgame();
 	std::cout << "\n\n Would you like to play again? Enter any non zero number for yes, zero  or any non number for no: ";
 	std::cin >> choice;
 	return choice;
