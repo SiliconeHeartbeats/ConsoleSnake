@@ -16,6 +16,7 @@ class Serpens {
 //their position into segx and segy. snakeLength determines how large the segx and segy vectors are, and as such how many segments follow the head.
 //this in turn, as expected, determines the snake's size. headx and heady store coordinates of, and fruitx/fruity follow suit with the fruit.
 	Board SnakeBoard;					
+	
 	std::vector<int> segx = {7,6,5};
 	std::vector<int> segy = {7,7,7};
 	int state = 1;
