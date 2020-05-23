@@ -3,7 +3,7 @@
 
 #include "screen.h"
 
-class board {
+class Board {
 
 public:
 
