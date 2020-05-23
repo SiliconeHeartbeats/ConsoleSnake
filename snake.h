@@ -10,12 +10,12 @@
 
 #include "board.h"
 
-class serpens {
+class Serpens {
 //segx stores 'x coordinates' of snake segments', segy stores 'y coordinates' of snake segments. state is changed in event of gameover() and ends game loop
 //move stores the input that directs the snake head, with every segment behind it occupying the space behind the segment ahead of it, and storing
 //their position into segx and segy. snakeLength determines how large the segx and segy vectors are, and as such how many segments follow the head.
 //this in turn, as expected, determines the snake's size. headx and heady store coordinates of, and fruitx/fruity follow suit with the fruit.
-	board snakeboard;					
+	Board SnakeBoard;					
 	std::vector<int> segx = {7,6,5};
 	std::vector<int> segy = {7,7,7};
 	int state = 1;
@@ -69,12 +69,12 @@ public:
 				switch (move) {
 				
 				case 'w':
-					if (snakeboard.gameboard[heady-1][headx] == 'o') {			//is snake head moving into snake body?
+					if (SnakeBoard.gameboard[heady-1][headx] == 'o') {			//is snake head moving into snake body?
 						gameover();												//gameover.
 						break;
 					}
 					if (heady != 1) {											//is snake heading into wall? (see board.h for reference)
-						snakeboard.gameboard[(heady - 1)][headx] = 'O';			//if not, move
+						SnakeBoard.gameboard[(heady - 1)][headx] = 'O';			//if not, move
 						heady = heady - 1;
 						segy.push_back(heady);
 						segx.push_back(headx);
@@ -86,12 +86,12 @@ public:
 					}
 				
 				case 's':
-					if (snakeboard.gameboard[heady + 1][headx] == 'o') {
+					if (SnakeBoard.gameboard[heady + 1][headx] == 'o') {
 						gameover();
 						break;
 					}
 					if (heady != 10) {
-						snakeboard.gameboard[(heady + 1)][headx] = 'O';
+						SnakeBoard.gameboard[(heady + 1)][headx] = 'O';
 						heady = heady + 1;
 						segy.push_back(heady);
 						segx.push_back(headx);
@@ -102,12 +102,12 @@ public:
 						break;
 					}
 				case 'a':
-					if (snakeboard.gameboard[heady][headx - 1] == 'o') {
+					if (SnakeBoard.gameboard[heady][headx - 1] == 'o') {
 						gameover();
 						break;
 					}
 					if (headx != 1) {
-						snakeboard.gameboard[heady][(headx - 1)] = 'O';
+						SnakeBoard.gameboard[heady][(headx - 1)] = 'O';
 						headx = headx - 1;
 						segy.push_back(heady);
 						segx.push_back(headx);
@@ -118,12 +118,12 @@ public:
 						break;
 					}
 				case 'd':
-					if (snakeboard.gameboard[heady][headx + 1] == 'o') {
+					if (SnakeBoard.gameboard[heady][headx + 1] == 'o') {
 						gameover();
 						break;
 					}
 					if (headx != 10) {
-						snakeboard.gameboard[heady][(headx + 1)] = 'O';
+						SnakeBoard.gameboard[heady][(headx + 1)] = 'O';
 						headx = headx + 1;
 						segy.push_back(heady);
 						segx.push_back(headx);
@@ -142,7 +142,7 @@ public:
 																		//and prints whitespace in 'behind' it
 				if(i != (snakeLength - 1)) {
 
-					snakeboard.gameboard[(segy.at(i))][(segx.at(i))] = 'o';
+					SnakeBoard.gameboard[(segy.at(i))][(segx.at(i))] = 'o';
 					segy.push_back((segy.at(i)));
 					segx.push_back((segx.at(i)));
 
@@ -151,12 +151,12 @@ public:
 			
 				else {
 				
-					snakeboard.gameboard[(segy.at(i))][(segx.at(i))] = ' ';
+					SnakeBoard.gameboard[(segy.at(i))][(segx.at(i))] = ' ';
 
 			}
 		}
 
-		snakeboard.printboard();										//prints updated game board 
+		SnakeBoard.printboard();										//prints updated game board 
 		screen::resetscreen();											//clears screen for further moves
 		segy.erase(segy.begin(), segy.begin() + snakeLength);			//clears previous turns moves and 'segment positions' from vectors.
 		segx.erase(segx.begin(), segx.begin() + snakeLength);			//bigger snakeLength value means bigger buffer meaning more segments can be stored
